@@ -70,6 +70,7 @@
 			//add blank "header" lines.
 			for(let lineIndex in variantOptionLines){
 				let prevLine = variantOptionLines[lineIndex-1];
+				prevLine = prevLine?prevLine:{};
 				let line = variantOptionLines[lineIndex];
 				let columns = Object.keys(line);
 				if(prevLine.Product!=line.Product || prevLine["Option Name"]!=line["Option Name"]){
