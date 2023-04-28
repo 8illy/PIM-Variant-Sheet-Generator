@@ -68,14 +68,15 @@
 			});
 			
 			//add blank "header" lines.
+			let variantOptionLinesWithHeaders =[];
 			for(let lineIndex in variantOptionLines){
 				let prevLine = variantOptionLines[lineIndex-1];
 				prevLine = prevLine?prevLine:{};
 				let line = variantOptionLines[lineIndex];
 				let columns = Object.keys(line);
 				if(prevLine.Product!=line.Product || prevLine["Option Name"]!=line["Option Name"]){
-					variantOptionLines.splice(lineIndex, 0, {
-						"Product" : line[columns[2]],
+					variantOptionLinesWithHeaders.push({
+						"Product" : line.Product,
 						"Option Type" : "rectangle",
 						"Option Name" : line["Option Name"],
 						"Option Value" : "",
@@ -84,6 +85,7 @@
 						"Parent Order" : line["Parent Order"],
 					});
 				}
+				variantOptionLinesWithHeaders.push(line);
 			}
 			
 			
@@ -104,7 +106,7 @@
 			let optionNamesWorkbook = XLSX.utils.book_new();
 			XLSX.utils.book_append_sheet(optionNamesWorkbook, optionNamesWorksheet, "Sheet1");
 			
-			let optionValuesWorksheet = XLSX.utils.json_to_sheet(variantOptionLines);
+			let optionValuesWorksheet = XLSX.utils.json_to_sheet(variantOptionLinesWithHeaders);
 			let optionValuesWorkbook = XLSX.utils.book_new();
 			XLSX.utils.book_append_sheet(optionValuesWorkbook, optionValuesWorksheet, "Sheet1");
 			
