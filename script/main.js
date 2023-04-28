@@ -67,7 +67,26 @@
 				return e;
 			});
 			
+			//add blank "header" lines.
+			for(let lineIndex in variantOptionLines){
+				let prevLine = variantOptionLines[lineIndex-1];
+				let line = variantOptionLines[lineIndex];
+				let columns = Object.keys(line);
+				if(prevLine.Product!=line.Product || prevLine["Option Name"]!=line["Option Name"]){
+					variantOptionLines.splice(lineIndex, 0, {
+						"Product" : line[columns[2]],
+						"Option Type" : "rectangle",
+						"Option Name" : line["Option Name"],
+						"Option Value" : "",
+						"Option Code" : "",
+						"Order" : "",
+						"Parent Order" : line["Parent Order"],
+					});
+				}
+			}
 			
+			
+			//build option names
 			let variantOptionNameLines = variantOptionLines.filter(function(e,i,a){
 				return a.findIndex(function(elem){
 					return elem.Product == e.Product && elem["Option Name"] == e["Option Name"];
