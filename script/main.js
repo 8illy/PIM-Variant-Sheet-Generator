@@ -48,9 +48,9 @@
 				}
 			}
           	
-			//sort outputLines by product, optionName.
+			//sort outputLines by product then optionName.
 			outputLines.sort(function(a,b){
-				return ((a.Product > b.Product)?1:-1)||((a["Option Name"] > b["Option Name"])?1:-1);
+				return (a.Product.localeCompare(b.Product)) || (a["Option Name"].localeCompare(b["Option Name"]));
 			});
 			
 			//remove duplicate product option name option value triplets
