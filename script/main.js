@@ -48,11 +48,17 @@
 				}
 			}
           	
-			//sort outputLines by product, optionName, optionValue.
+			//sort outputLines by product, optionName.
 			outputLines.sort(function(a,b){
 				return ((a.Product > b.Product)?1:-1)||((a["Option Name"] > b["Option Name"])?1:-1);
 			});
 			
+			//remove duplicate product option name option value triplets
+			outputLines = outputLines.filter(function(e,i,a){
+				return a.findIndex(function(elem){
+					return elem.Product==e.Product && elem["Option Name"]==e["Option Name"] && elem["Option Value"]==e["Option Value"]
+				})==i;
+			});
 			//build our 2 sheets.
 			let variantOptionLines = outputLines.map(function(e,i,a){
 				if(i==0||a[i-1].Product != e.Product){
