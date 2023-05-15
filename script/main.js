@@ -115,10 +115,10 @@
 			}).map(function(e){
 				return {
 				//	"Product" : e.Product,
-					"SKU" : line["SKU"],
-					"Rowid" : line["Rowid"],
-					"Item Code" : line["Item Code" ],
-					"Item Name" : line["Item Name"],
+					"SKU" : e["SKU"],
+					"Rowid" : e["Rowid"],
+					"Item Code" : e["Item Code" ],
+					"Item Name" : e["Item Name"],
 						
 					"Option Name" : e["Option Name"],
 					"Position" : e["Parent Order"],//maybe not needed?
