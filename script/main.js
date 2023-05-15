@@ -36,10 +36,13 @@
 					let value = line[column];
 					if(value && value!="NULL" && columns.indexOf(column) > 3){
 						outputLines.push({
-							[columns[0]] : line[columns[0]],
-							[columns[1]] : line[columns[1]],
 							"Product" : line[columns[2]],
-							[columns[3]] : line[columns[3]],
+							
+							"SKU" : line[columns[0]],
+							"Rowid" : line[columns[1]],
+							"Item Code" : line[columns[2]],
+							"Item Name" : line[columns[3]],
+							
 							"Option Type" : "rectangle",
 							"Option Name" : column,
 							"Option Value" : value,
@@ -85,7 +88,13 @@
 				let columns = Object.keys(line);
 				if(prevLine.Product!=line.Product || prevLine["Option Name"]!=line["Option Name"]){
 					variantOptionLinesWithHeaders.push({
-						"Product" : line.Product,
+						//"Product" : line.Product,
+						
+						"SKU" : line["SKU"],
+						"Rowid" : line["Rowid"],
+						"Item Code" : line["Item Code" ],
+						"Item Name" : line["Item Name"],
+						
 						"Option Type" : "rectangle",
 						"Option Name" : line["Option Name"],
 						"Option Value" : "",
@@ -105,7 +114,12 @@
 				})==i;
 			}).map(function(e){
 				return {
-					"Product" : e.Product,
+				//	"Product" : e.Product,
+					"SKU" : line["SKU"],
+					"Rowid" : line["Rowid"],
+					"Item Code" : line["Item Code" ],
+					"Item Name" : line["Item Name"],
+						
 					"Option Name" : e["Option Name"],
 					"Position" : e["Parent Order"],//maybe not needed?
 				}
