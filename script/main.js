@@ -30,13 +30,16 @@
 			let outputLines = [];
 
 			for(let line of lines){
-				//first 3 columns copy to the output line
+				//first 4 columns copy to the output line
 				let columns = Object.keys(line);
 				for(let column in line){
 					let value = line[column];
-					if(value && value!="NULL" && columns.indexOf(column) > 2){
+					if(value && value!="NULL" && columns.indexOf(column) > 3){
 						outputLines.push({
+							[columns[0]] : line[columns[0]],
+							[columns[1]] : line[columns[1]],
 							"Product" : line[columns[2]],
+							[columns[3]] : line[columns[3]],
 							"Option Type" : "rectangle",
 							"Option Name" : column,
 							"Option Value" : value,
